@@ -1,0 +1,937 @@
+[gd_scene format=3 uid="uid://dsa4k25kwej3w"]
+
+[ext_resource type="Texture2D" uid="uid://ch8nyo11kcrla" path="res://assets/gfx/ui/login/back_login2.tres" id="1_50ynx"]
+[ext_resource type="Texture2D" uid="uid://iued5ramk8dj" path="res://assets/gfx/ui/login/back_login5.tres" id="2_fecbe"]
+[ext_resource type="Texture2D" uid="uid://g2k6tnet3uf" path="res://assets/gfx/ui/login/back_login1.tres" id="3_pxr11"]
+[ext_resource type="Texture2D" uid="uid://dji83byhoc0e6" path="res://assets/gfx/ui/login/back_login3.tres" id="4_r6kyg"]
+[ext_resource type="PackedScene" uid="uid://bwdpkaql43ffw" path="res://assets/particles/ui/fire2.tscn" id="4_svil3"]
+[ext_resource type="Texture2D" uid="uid://syje6cct1yac" path="res://assets/gfx/ui/login/back_login4.tres" id="5_aub5g"]
+[ext_resource type="PackedScene" uid="uid://ceixspq44ai1l" path="res://assets/particles/ui/fire2_small.tscn" id="5_r8xdj"]
+[ext_resource type="Texture2D" uid="uid://htt4xr3mhel3" path="res://assets/gfx/ui/login/login.png" id="6_moa1g"]
+[ext_resource type="Texture2D" uid="uid://boldgqrnhfwlg" path="res://assets/gfx/ui/login/back_login6.tres" id="8_tnvp0"]
+[ext_resource type="Theme" uid="uid://ovangqhhdny4" path="res://assets/fonts/ui_theme_blitz.tres" id="9_idk42"]
+[ext_resource type="Texture2D" uid="uid://d0rgq7dchmt3q" path="res://assets/gfx/ui/login/back_login7.tres" id="10_as1l6"]
+[ext_resource type="Texture2D" uid="uid://b4lk2gklle8b3" path="res://assets/gfx/ui/common/texture.webp" id="10_faf10"]
+[ext_resource type="LabelSettings" uid="uid://dde0wr3sq7fxp" path="res://assets/gfx/ui/warhelios_bold_label.tres" id="11_hlshp"]
+[ext_resource type="PackedScene" uid="uid://0f3rbjvvwrwi" path="res://assets/gfx/ui/grey_panel.tscn" id="12_svil3"]
+[ext_resource type="LabelSettings" uid="uid://dacrvwmmv30mc" path="res://assets/gfx/ui/warhelios_label.tres" id="13_q37r3"]
+[ext_resource type="Script" uid="uid://c1w1poqkj0wxk" path="res://scripts/ui_elements/button_generic.gd" id="13_srbqd"]
+[ext_resource type="PackedScene" uid="uid://des4c8sn2quf4" path="res://assets/gfx/ui/common/button_green.tscn" id="16_svil3"]
+[ext_resource type="PackedScene" uid="uid://bolif42q3rvak" path="res://assets/gfx/ui/common/button_generic_small.tscn" id="17_r8xdj"]
+[ext_resource type="Texture2D" uid="uid://bqg888rv8mpx0" path="res://assets/gfx/ui/lobby_common/lobbyCommon_Out.png" id="18_7merf"]
+[ext_resource type="PackedScene" uid="uid://hetcx7uk2d0j" path="res://assets/gfx/ui/login/account.tscn" id="19_svil3"]
+[ext_resource type="AudioStream" uid="uid://dmbeuusslrgry" path="res://assets/sfx/ui/login_screen/harmony.wav" id="21_1065s"]
+[ext_resource type="AudioStream" uid="uid://cq3pgtg7ub5ph" path="res://assets/sfx/ui/login_screen/ambient_wo_explosions.wav" id="22_a6lyi"]
+[ext_resource type="AudioStream" uid="uid://pn2l3qok5x18" path="res://assets/sfx/ui/login_screen/drums.wav" id="23_lpx07"]
+
+[sub_resource type="GDScript" id="GDScript_7wyav"]
+resource_name = "login_screen"
+script/source = "extends CanvasLayer
+
+
+
+func _ready() -> void:
+	%tabs.current_tab = 0
+	
+	$t_version.text = Global.VERSION
+	update()
+	%l_login.focus_entered.connect(
+	func():
+		pass
+	)
+	%l_login.focus_exited.connect(
+	func():
+		pass
+	)
+	
+	%l_password.focus_entered.connect(
+	func():
+		pass
+	)
+	%l_password.focus_exited.connect(
+	func():
+		pass
+	)
+
+func update():
+	var save := Global.save_main
+	if save.accounts.has(save.current_acc):
+		%current_akk.text = tr(\"LOGIN_CURRENT_AKK\") + \"'\"+save.accounts[save.current_acc].name + \"'\"
+	else:
+		%current_akk.text = tr(\"LOGIN_CURRENT_AKK\") + \"None\"
+	%accounts_manager.update()
+
+func try_login() -> void:
+	var login : String = %l_login.text
+	var password : String = %l_password.text
+	
+	if login.is_empty() or password.is_empty():
+		pass
+	
+	var key := login+\":\"+password
+	var save := Global.save_main
+	
+	if save.accounts.has(key):
+		save.switch_account(key)
+		
+		_on_play()
+	else:
+		%error_text.visible = true
+		await Util.delay(5)
+		%error_text.visible = false
+	update()
+
+func back_to_play_button():
+	%tabs.current_tab = 0
+func _on_play() -> void:
+	var save := Global.save_main
+	if save.accounts.has(save.current_acc):
+		save.login_into_current_account()
+		
+		Global.to_hangar()
+	else:
+		%tabs.current_tab = 2
+func to_manage_accounts() -> void:
+	update()
+	%tabs.current_tab = 2
+func to_account_creator() -> void:
+	%tabs.current_tab = 3
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_td5sv"]
+atlas = ExtResource("18_7merf")
+region = Rect2(1522, 980, 62, 58)
+
+[sub_resource type="GDScript" id="GDScript_1v26g"]
+resource_name = "accounts_manager"
+script/source = "extends Control
+
+@onready var list := %accounts
+@export var login_screen : Node
+
+var template := load(\"res://assets/gfx/ui/login/account.tscn\")
+
+func _ready() -> void:
+	update()
+	
+func update():
+	for c in list.get_children(): c.queue_free()
+	var save := Global.save_main
+	for key in save.accounts.keys():
+		var temp = template.instantiate()
+		
+		temp.login_screen = self.login_screen
+		temp.acc_key = key
+		
+		list.add_child(temp)
+		temp.setup(save.accounts[key], save.current_acc == key)
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dpu28"]
+atlas = ExtResource("10_faf10")
+region = Rect2(519, 1, 100, 146)
+
+[sub_resource type="GDScript" id="GDScript_svil3"]
+resource_name = "account_creator"
+script/source = "extends Control
+
+@onready var field_name = $VBoxContainer/MarginContainer3/l_nickname
+@onready var field_login = $VBoxContainer/MarginContainer/l_login
+@onready var field_password = $VBoxContainer/MarginContainer2/l_password
+
+@export var login_screen : Node
+
+func try_account_create():
+	if field_name.text.is_empty() or field_login.text.is_empty() or field_password.text.is_empty():
+		err(\"LOGIN_CREATE/empty_fields\")
+		return
+	if Global.save_main.login_used(field_login.text):
+		err(\"LOGIN_CREATE/login_used\")
+		return
+	if Global.save_main.login_used(field_login.text):
+		err(\"LOGIN_CREATE/login_used\")
+		return
+		
+	Global.save_main.create_account(field_name.text, field_login.text, field_password.text)
+	field_name.text = \"\"
+	field_login.text = \"\"
+	field_password.text = \"\"
+	%tabs.current_tab = 1
+
+func err(err:String):
+	$error_text.text = tr(err)
+	$error_text.visible = true
+	await Util.delay(5)
+	$error_text.visible = false
+"
+
+[sub_resource type="Animation" id="Animation_087mf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tabs/login_window/error_text:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_a15vc"]
+resource_name = "err_fade_out"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tabs/login_window/error_text:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666, 4.9617, 4.995),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.301961, 0.211765, 1), Color(1, 0.301961, 0.211765, 1), Color(0.84, 0, 0.238, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bnwj3"]
+_data = {
+&"RESET": SubResource("Animation_087mf"),
+&"err_fade_out": SubResource("Animation_a15vc")
+}
+
+[node name="login_screen" type="CanvasLayer" unique_id=727721096]
+script = SubResource("GDScript_7wyav")
+
+[node name="background" type="Control" parent="." unique_id=324958489]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+scale = Vector2(0.585, 0.585)
+
+[node name="backEffect8" type="TextureRect" parent="background" unique_id=1245603832]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.709
+offset_left = -810.2566
+offset_top = -5.1282053
+offset_right = -1903.6166
+offset_bottom = 1532.8718
+texture = ExtResource("10_as1l6")
+stretch_mode = 3
+
+[node name="backEffect2" type="TextureRect" parent="background" unique_id=312274471]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.742
+offset_left = -41.0257
+offset_top = -3.4188
+offset_right = 0.190186
+offset_bottom = 739.581
+texture = ExtResource("1_50ynx")
+stretch_mode = 3
+
+[node name="backEffect4" type="TextureRect" parent="background" unique_id=799418010]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.709
+offset_left = -41.0257
+offset_top = 205.581
+offset_right = 38.2063
+offset_bottom = 659.581
+texture = ExtResource("5_aub5g")
+stretch_mode = 3
+
+[node name="backEffect1" type="TextureRect" parent="background" unique_id=1273627895]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.709
+offset_left = -40.0257
+offset_top = 340.581
+offset_right = 39.2063
+offset_bottom = 1531.58
+texture = ExtResource("3_pxr11")
+stretch_mode = 3
+
+[node name="particles1" type="Control" parent="background" unique_id=868830601]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -437.6069
+offset_top = 27.350426
+offset_right = -437.6069
+offset_bottom = 27.350426
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="fire2_01" parent="background/particles1" unique_id=433539833 instance=ExtResource("4_svil3")]
+layout_mode = 0
+offset_left = 543.1796
+offset_top = 547.00854
+offset_right = 543.1796
+offset_bottom = 547.00854
+
+[node name="fire2_02" parent="background/particles1" unique_id=1385167830 instance=ExtResource("4_svil3")]
+layout_mode = 0
+offset_left = 1117.5377
+offset_top = 492.30798
+offset_right = 1117.5377
+offset_bottom = 492.30798
+
+[node name="fire2_small_01" parent="background/particles1" unique_id=903723446 instance=ExtResource("5_r8xdj")]
+layout_mode = 0
+offset_left = 165.4021
+offset_top = 601.70935
+offset_right = 165.4021
+offset_bottom = 601.70935
+
+[node name="fire2_small_02" parent="background/particles1" unique_id=1804990191 instance=ExtResource("5_r8xdj")]
+layout_mode = 0
+offset_left = 1710.7017
+offset_top = 519.6582
+offset_right = 1710.7017
+offset_bottom = 519.6582
+
+[node name="backEffect5" type="TextureRect" parent="background" unique_id=685253332]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.709
+offset_left = 74.9743
+offset_top = 375.581
+offset_right = -1296.79
+offset_bottom = 804.581
+texture = ExtResource("2_fecbe")
+stretch_mode = 3
+
+[node name="backEffect6" type="TextureRect" parent="background" unique_id=1444402393]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.709
+offset_left = 1154.97
+offset_top = 401.581
+offset_right = 83.2063
+offset_bottom = 707.581
+texture = ExtResource("8_tnvp0")
+stretch_mode = 3
+
+[node name="backEffect3" type="TextureRect" parent="background" unique_id=463078747]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.709
+offset_left = 414.974
+offset_top = -3.4188
+offset_right = -9.7937
+offset_bottom = 773.581
+texture = ExtResource("4_r6kyg")
+stretch_mode = 3
+
+[node name="backEffect7" type="TextureRect" parent="background" unique_id=1943412681]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.709
+offset_left = 2005.13
+offset_top = -5.12821
+offset_right = 720.36
+offset_bottom = 1532.87
+texture = ExtResource("10_as1l6")
+stretch_mode = 3
+
+[node name="tabs" type="TabContainer" parent="." unique_id=63721060]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.321569)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("9_idk42")
+current_tab = 0
+clip_tabs = false
+tabs_visible = false
+
+[node name="play_button" type="Control" parent="tabs" unique_id=162525798]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="button_login2" type="Button" parent="tabs/play_button" unique_id=603537093]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -108.0
+offset_top = 130.0
+offset_right = 108.0
+offset_bottom = 190.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme = ExtResource("9_idk42")
+theme_type_variation = &"ButtonGreen"
+theme_override_font_sizes/font_size = 24
+text = "PLAY"
+script = ExtResource("13_srbqd")
+
+[node name="button_login3" type="Button" parent="tabs/play_button" unique_id=1346287862]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -76.0
+offset_top = 201.0
+offset_right = 77.0
+offset_bottom = 236.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme = ExtResource("9_idk42")
+theme_type_variation = &"ButtonFlat"
+text = "LOGIN_MANAGE_AKKS"
+script = ExtResource("13_srbqd")
+
+[node name="current_akk" type="Label" parent="tabs/play_button" unique_id=393430663]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65.0
+offset_top = 102.0
+offset_right = 64.0
+offset_bottom = 118.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Current account: \"dxii\""
+horizontal_alignment = 1
+
+[node name="login_window" type="Control" parent="tabs" unique_id=902396971]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Login" type="Sprite2D" parent="tabs/login_window" unique_id=744769329]
+visible = false
+modulate = Color(1, 1, 1, 0.8)
+position = Vector2(402.25, 240.25)
+scale = Vector2(1.04237, 1.09226)
+texture = ExtResource("6_moa1g")
+metadata/_edit_lock_ = true
+
+[node name="TextEdit" type="TextEdit" parent="tabs/login_window" unique_id=2075915406]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -121.0
+offset_top = -23.0
+offset_right = 121.0
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 2
+wrap_mode = 1
+
+[node name="panel" parent="tabs/login_window" unique_id=1948210700 instance=ExtResource("12_svil3")]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.52500004
+anchor_right = 0.5
+anchor_bottom = 0.52500004
+offset_left = -191.56
+offset_top = -138.40002
+offset_right = 580.43994
+offset_bottom = 344.9
+
+[node name="VBoxContainer" type="VBoxContainer" parent="tabs/login_window" unique_id=1660620739]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -178.0
+offset_top = -101.0
+offset_right = 182.0
+offset_bottom = 137.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="tabs/login_window/VBoxContainer" unique_id=1334933433]
+layout_mode = 2
+theme_override_constants/margin_bottom = 10
+
+[node name="l_login" type="LineEdit" parent="tabs/login_window/VBoxContainer/MarginContainer" unique_id=1438671799]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("9_idk42")
+placeholder_text = "LOGIN/login"
+max_length = 32
+
+[node name="MarginContainer2" type="MarginContainer" parent="tabs/login_window/VBoxContainer" unique_id=725365225]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="l_password" type="LineEdit" parent="tabs/login_window/VBoxContainer/MarginContainer2" unique_id=305392509]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("9_idk42")
+placeholder_text = "LOGIN/password"
+max_length = 32
+secret = true
+secret_character = "*"
+
+[node name="Label" type="Label" parent="tabs/login_window" unique_id=1162008177]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -106.5
+offset_top = -155.0
+offset_right = 106.5
+offset_bottom = -119.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "LOGIN_USING_ID"
+label_settings = ExtResource("11_hlshp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="error_text" type="Label" parent="tabs/login_window" unique_id=1570138049]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 0.29, 0.29, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -177.0
+offset_top = -13.0
+offset_right = 36.0
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "LOGIN_WRONG_PASS"
+label_settings = ExtResource("13_q37r3")
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="tabs/login_window" unique_id=588160954]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -177.0
+offset_top = 60.0
+offset_right = 180.0
+offset_bottom = 109.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="button_login" parent="tabs/login_window/HBoxContainer" unique_id=70331392 instance=ExtResource("16_svil3")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="tabs/login_window/HBoxContainer" unique_id=202370381]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.05
+
+[node name="button_login2" type="Button" parent="tabs/login_window/HBoxContainer" unique_id=749649054]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("9_idk42")
+theme_type_variation = &"ButtonFlat"
+text = "LOGIN_CREATE_ID"
+script = ExtResource("13_srbqd")
+
+[node name="back" parent="tabs/login_window" unique_id=771517246 instance=ExtResource("17_r8xdj")]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 10.0
+offset_right = 99.0
+offset_bottom = 93.0
+scale = Vector2(0.59, 0.59)
+text = ""
+icon = SubResource("AtlasTexture_td5sv")
+icon_alignment = 1
+
+[node name="accounts_manager" type="Control" parent="tabs" unique_id=463276920 node_paths=PackedStringArray("login_screen")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+script = SubResource("GDScript_1v26g")
+login_screen = NodePath("../..")
+metadata/_tab_index = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="tabs/accounts_manager" unique_id=155063334]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -191.0
+offset_top = -169.0
+offset_right = 581.0
+offset_bottom = 645.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_faf10")
+region_rect = Rect2(0, 400, 97, 98)
+patch_margin_left = 15
+patch_margin_top = 15
+patch_margin_right = 15
+patch_margin_bottom = 15
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="tabs/accounts_manager" unique_id=1126470734]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -191.0
+offset_top = -213.0
+offset_right = 322.0
+offset_bottom = -154.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.75, 0.75)
+texture = SubResource("AtlasTexture_dpu28")
+patch_margin_left = 7
+patch_margin_top = 5
+patch_margin_right = 7
+patch_margin_bottom = 5
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="top_label" type="Label" parent="tabs/accounts_manager" unique_id=296486166]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -106.5
+offset_top = -208.0
+offset_right = 106.5
+offset_bottom = -172.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "LOGIN_MANAGE_AKKS"
+label_settings = ExtResource("11_hlshp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="tabs/accounts_manager" unique_id=82164566]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.502
+anchor_top = 0.507
+anchor_right = 0.502
+anchor_bottom = 0.507
+offset_left = -181.304
+offset_top = -167.536
+offset_right = 187.696
+offset_bottom = 167.464
+
+[node name="accounts" type="VBoxContainer" parent="tabs/accounts_manager/ScrollContainer" unique_id=2090684978]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 2
+
+[node name="account" parent="tabs/accounts_manager/ScrollContainer/accounts" unique_id=368843253 instance=ExtResource("19_svil3")]
+layout_mode = 2
+
+[node name="account2" parent="tabs/accounts_manager/ScrollContainer/accounts" unique_id=1877237159 instance=ExtResource("19_svil3")]
+layout_mode = 2
+
+[node name="account3" parent="tabs/accounts_manager/ScrollContainer/accounts" unique_id=1596546240 instance=ExtResource("19_svil3")]
+layout_mode = 2
+
+[node name="account4" parent="tabs/accounts_manager/ScrollContainer/accounts" unique_id=569253080 instance=ExtResource("19_svil3")]
+layout_mode = 2
+
+[node name="account5" parent="tabs/accounts_manager/ScrollContainer/accounts" unique_id=432014277 instance=ExtResource("19_svil3")]
+layout_mode = 2
+
+[node name="account6" parent="tabs/accounts_manager/ScrollContainer/accounts" unique_id=1607898118 instance=ExtResource("19_svil3")]
+layout_mode = 2
+
+[node name="back" parent="tabs/accounts_manager" unique_id=23540628 instance=ExtResource("17_r8xdj")]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 10.0
+offset_right = 99.0
+offset_bottom = 93.0
+scale = Vector2(0.59, 0.59)
+text = ""
+icon = SubResource("AtlasTexture_td5sv")
+icon_alignment = 1
+
+[node name="button_login2" type="Button" parent="tabs/accounts_manager" unique_id=1555778824]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -181.0
+offset_top = 182.0
+offset_right = -12.0
+offset_bottom = 231.0
+size_flags_horizontal = 3
+theme = ExtResource("9_idk42")
+theme_type_variation = &"ButtonFlat"
+text = "LOGIN_CREATE_ID"
+script = ExtResource("13_srbqd")
+
+[node name="account_creator" type="Control" parent="tabs" unique_id=1526942323 node_paths=PackedStringArray("login_screen")]
+visible = false
+layout_mode = 2
+script = SubResource("GDScript_svil3")
+login_screen = NodePath("../..")
+metadata/_tab_index = 3
+
+[node name="Login" type="Sprite2D" parent="tabs/account_creator" unique_id=520339080]
+visible = false
+modulate = Color(1, 1, 1, 0.8)
+position = Vector2(402.25, 240.25)
+scale = Vector2(1.04237, 1.09226)
+texture = ExtResource("6_moa1g")
+metadata/_edit_lock_ = true
+
+[node name="TextEdit" type="TextEdit" parent="tabs/account_creator" unique_id=1290073418]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -121.0
+offset_top = -23.0
+offset_right = 121.0
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 2
+wrap_mode = 1
+
+[node name="NinePatchRect" type="NinePatchRect" parent="tabs/account_creator" unique_id=2050947959]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -191.0
+offset_top = -117.0
+offset_right = 581.0
+offset_bottom = 409.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_faf10")
+region_rect = Rect2(0, 400, 97, 98)
+patch_margin_left = 15
+patch_margin_top = 15
+patch_margin_right = 15
+patch_margin_bottom = 15
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="tabs/account_creator" unique_id=1468427381]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -108.0
+offset_right = 180.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="tabs/account_creator/VBoxContainer" unique_id=1735169560]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 20
+
+[node name="l_nickname" type="LineEdit" parent="tabs/account_creator/VBoxContainer/MarginContainer3" unique_id=934816221]
+layout_mode = 2
+theme = ExtResource("9_idk42")
+placeholder_text = "LOGIN/nickname"
+max_length = 32
+
+[node name="MarginContainer" type="MarginContainer" parent="tabs/account_creator/VBoxContainer" unique_id=1798489817]
+layout_mode = 2
+theme_override_constants/margin_bottom = 10
+
+[node name="l_login" type="LineEdit" parent="tabs/account_creator/VBoxContainer/MarginContainer" unique_id=361808972]
+layout_mode = 2
+theme = ExtResource("9_idk42")
+placeholder_text = "LOGIN/login"
+max_length = 32
+
+[node name="MarginContainer2" type="MarginContainer" parent="tabs/account_creator/VBoxContainer" unique_id=1341968437]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="l_password" type="LineEdit" parent="tabs/account_creator/VBoxContainer/MarginContainer2" unique_id=1160527902]
+layout_mode = 2
+theme = ExtResource("9_idk42")
+placeholder_text = "LOGIN/password"
+max_length = 32
+secret = true
+secret_character = "*"
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="tabs/account_creator" unique_id=1696095573]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -191.0
+offset_top = -160.0
+offset_right = 322.0
+offset_bottom = -101.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.75, 0.75)
+texture = SubResource("AtlasTexture_dpu28")
+patch_margin_left = 7
+patch_margin_top = 5
+patch_margin_right = 7
+patch_margin_bottom = 5
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="button_create" parent="tabs/account_creator" unique_id=1051681294 instance=ExtResource("16_svil3")]
+layout_mode = 0
+anchor_left = 0.498
+anchor_top = 0.5
+anchor_right = 0.498
+anchor_bottom = 0.5
+offset_left = -122.696
+offset_top = 85.0
+offset_right = 135.304
+offset_bottom = 134.0
+text = "LOGIN_CREATE_ID"
+
+[node name="back" parent="tabs/account_creator" unique_id=23787364 instance=ExtResource("17_r8xdj")]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 10.0
+offset_right = 99.0
+offset_bottom = 93.0
+scale = Vector2(0.59, 0.59)
+text = ""
+icon = SubResource("AtlasTexture_td5sv")
+icon_alignment = 1
+
+[node name="title" type="Label" parent="tabs/account_creator" unique_id=1008781146]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -106.5
+offset_top = -155.0
+offset_right = 106.5
+offset_bottom = -119.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "LOGIN_CREATE_ACCOUNT"
+label_settings = ExtResource("11_hlshp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="error_text" type="Label" parent="tabs/account_creator" unique_id=750840906]
+visible = false
+modulate = Color(1, 0.29, 0.29, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -170.0
+offset_top = 46.0
+offset_right = 43.0
+offset_bottom = 82.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "LOGIN_CREATE/empty_fields"
+label_settings = ExtResource("13_q37r3")
+vertical_alignment = 1
+
+[node name="t_version" type="Label" parent="." unique_id=99868435]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = -25.0
+offset_right = 64.0
+offset_bottom = -2.0
+grow_vertical = 0
+size_flags_horizontal = 4
+theme = ExtResource("9_idk42")
+text = "1.5.2"
+label_settings = ExtResource("11_hlshp")
+vertical_alignment = 1
+
+[node name="anims" type="AnimationPlayer" parent="." unique_id=1921286267]
+libraries/ = SubResource("AnimationLibrary_bnwj3")
+
+[node name="music1" type="AudioStreamPlayer" parent="." unique_id=1096544011]
+stream = ExtResource("21_1065s")
+autoplay = true
+bus = &"Music"
+
+[node name="music2" type="AudioStreamPlayer" parent="." unique_id=1429265035]
+stream = ExtResource("22_a6lyi")
+autoplay = true
+bus = &"Music"
+
+[node name="music3" type="AudioStreamPlayer" parent="." unique_id=565995414]
+stream = ExtResource("23_lpx07")
+autoplay = true
+bus = &"Music"
+
+[connection signal="pressed" from="tabs/play_button/button_login2" to="." method="_on_play"]
+[connection signal="pressed" from="tabs/play_button/button_login3" to="." method="to_manage_accounts"]
+[connection signal="pressed" from="tabs/login_window/HBoxContainer/button_login" to="." method="try_login"]
+[connection signal="pressed" from="tabs/login_window/HBoxContainer/button_login2" to="." method="to_account_creator"]
+[connection signal="pressed" from="tabs/login_window/back" to="." method="back_to_play_button"]
+[connection signal="pressed" from="tabs/accounts_manager/back" to="." method="back_to_play_button"]
+[connection signal="pressed" from="tabs/accounts_manager/button_login2" to="." method="to_account_creator"]
+[connection signal="pressed" from="tabs/account_creator/button_create" to="tabs/account_creator" method="try_account_create"]
+[connection signal="pressed" from="tabs/account_creator/back" to="." method="back_to_play_button"]

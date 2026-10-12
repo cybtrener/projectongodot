@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://d0p5altgttce1"]
+
+[ext_resource type="PackedScene" uid="uid://cr67uhci02md6" path="res://assets/dev/blockout_cube.tscn" id="1_ke1fg"]
+
+[sub_resource type="Environment" id="Environment_kqeq8"]
+background_energy_multiplier = 0.0
+ambient_light_source = 2
+ambient_light_color = Color(0.48578, 0.48578, 0.48578, 1)
+
+[node name="rudniki" type="Node3D" unique_id=1390865363]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1968404480]
+transform = Transform3D(0.866026, -0.129409, -0.482962, 0.353553, -0.524519, 0.774519, -0.353553, -0.841506, -0.408494, 5, 4.93798, -1)
+light_color = Color(0.74227, 0.745622, 0.697038, 1)
+shadow_transmittance_bias = 0.0
+directional_shadow_mode = 0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=310440008]
+environment = SubResource("Environment_kqeq8")
+
+[node name="static" type="Node3D" parent="." unique_id=903990855]
+
+[node name="cube2" parent="static" unique_id=261026539 instance=ExtResource("1_ke1fg")]
+transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 5.04, 0, 2, -5)
+skeleton = NodePath("../../..")
+
+[node name="cube3" parent="static" unique_id=1567294331 instance=ExtResource("1_ke1fg")]
+transform = Transform3D(909.974, 0, 0, 0, 1.911, 0, 0, 0, 500, 0, 1, -10)
+skeleton = NodePath("../../..")
+
+[node name="cube4" parent="static" unique_id=1242299265 instance=ExtResource("1_ke1fg")]
+transform = Transform3D(5, 0, 0, 0, 0.965926, -1.30445, 0, 0.258819, 4.86827, 0, 1.49688, -15)
+skeleton = NodePath("../../..")
+
+[node name="cube5" parent="static" unique_id=1673189135 instance=ExtResource("1_ke1fg")]
+transform = Transform3D(5, 0, 0, 0, 0.965926, -2.78101, 0, 0.258819, 10.3789, 10, 2.49688, -15)
+skeleton = NodePath("../../..")
+
+[node name="cube13" parent="static" unique_id=359757810 instance=ExtResource("1_ke1fg")]
+transform = Transform3D(5, 0, 0, 0, 100, 0, 0, 0, 10, 32.9713, 49.1866, -13.619)
+skeleton = NodePath("../../..")
+
+[node name="cube14" parent="static" unique_id=564574043 instance=ExtResource("1_ke1fg")]
+transform = Transform3D(300.683, 0, 0, 0, 5.745, 0, 0, 0, 20.3053, 26.3163, 25.6167, -13.619)
+skeleton = NodePath("../../..")
+
+[node name="cube16" parent="static" unique_id=199730346 instance=ExtResource("1_ke1fg")]
+transform = Transform3D(1000, 0, 0, 0, 100, 0, 0, 0, 22.285, 26.3163, 25.6167, -267.979)
+skeleton = NodePath("../../..")
+
+[node name="cube17" parent="static" unique_id=1442624620 instance=ExtResource("1_ke1fg")]
+transform = Transform3D(1000, 0, 0, 0, 100, 0, 0, 0, 22.285, 26.3163, 25.6167, 248.912)
+skeleton = NodePath("../../..")
+
+[node name="cube18" parent="static" unique_id=1381215031 instance=ExtResource("1_ke1fg")]
+transform = Transform3D(22, 0, 0, 0, 100, 0, 0, 0, 500.904, 465.556, 25.6166, -9.25112)
+skeleton = NodePath("../../..")
+
+[node name="cube19" parent="static" unique_id=1348698519 instance=ExtResource("1_ke1fg")]
+transform = Transform3D(22, 0, 0, 0, 100, 0, 0, 0, 500.904, -454.432, 25.6166, -9.30068)
+skeleton = NodePath("../../..")
+
+[node name="cube15" parent="static" unique_id=2012967111 instance=ExtResource("1_ke1fg")]
+transform = Transform3D(66.8908, -2.30653, 0, 29.3226, 5.26165, 0, 0, 0, 20.305, -156.719, 11.2042, -13.619)
+skeleton = NodePath("../../..")
+
+[node name="cube12" parent="static" unique_id=1923655087 instance=ExtResource("1_ke1fg")]
+transform = Transform3D(-5, 2.26267e-08, 9.0735e-07, 0, 0.965926, -2.78101, -4.37114e-07, -0.258819, -10.3789, 10, 2.49688, -25)
+skeleton = NodePath("../../..")
+
+[node name="cube6" parent="static" unique_id=965087739 instance=ExtResource("1_ke1fg")]
+transform = Transform3D(5, 0, 0, 0, 0.931056, -1.83898, 0, 0.364877, 4.69252, 0, 1.09675, -19.7649)
+skeleton = NodePath("../../..")
+
+[node name="cube7" parent="static" unique_id=50147299 instance=ExtResource("1_ke1fg")]
+transform = Transform3D(5, 0, 0, 0, 0.931056, -1.83898, 0, 0.364877, 4.69252, 0, 1.09675, -23.7649)
+skeleton = NodePath("../../..")
+
+[node name="cube8" parent="static" unique_id=1944691129 instance=ExtResource("1_ke1fg")]
+transform = Transform3D(5, 0, 0, 0, 0.931056, -1.83898, 0, 0.364877, 4.69252, 0, 1.09675, -27.7649)
+skeleton = NodePath("../../..")
+
+[node name="cube9" parent="static" unique_id=1629759907 instance=ExtResource("1_ke1fg")]
+transform = Transform3D(5, 0, 0, 0, 0.931056, -1.83898, 0, 0.364877, 4.69252, 0, 1.09675, -32.7649)
+skeleton = NodePath("../../..")
+
+[node name="cube10" parent="static" unique_id=354387886 instance=ExtResource("1_ke1fg")]
+transform = Transform3D(5, 0, 0, 0, 0.931056, -1.83898, 0, 0.364877, 4.69252, 0, 1.09675, -38.7649)
+skeleton = NodePath("../../..")
+
+[node name="cube11" parent="static" unique_id=437844068 instance=ExtResource("1_ke1fg")]
+transform = Transform3D(5, 0, 0, 0, 0.931056, -1.83898, 0, 0.364877, 4.69252, 0, 1.09675, -44.7649)
+skeleton = NodePath("../../..")
