@@ -1,0 +1,18 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://b1f8gtprsa85d"]
+
+[ext_resource type="Shader" uid="uid://b437dl5owwx8e" path="res://maps/components/map_object.gdshader" id="1_u8un6"]
+[ext_resource type="Texture2D" uid="uid://c8xw7e1383ltb" path="res://maps/hangar_low/1.mali_Out.png" id="2_6shiw"]
+[ext_resource type="Texture2D" uid="uid://2v6eq2f5rue6" path="res://maps/hangar_low/1.emissive.png" id="3_ag7hq"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_u8un6")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("2_6shiw")
+shader_parameter/texture_emissive = ExtResource("3_ag7hq")
+shader_parameter/albedo_texture_size = Vector2i(0, 0)
+shader_parameter/emissive = true
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
