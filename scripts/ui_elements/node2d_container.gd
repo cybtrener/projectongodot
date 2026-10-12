@@ -1,0 +1,2 @@
+extends Container
+class_name Node2DContainer
