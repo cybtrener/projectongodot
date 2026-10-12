@@ -1,0 +1,66 @@
+GDRE Tools v2.7.3
+Windows 10.0.19045, NVIDIA GeForce GT 1030, vulkan
+WARNING: Could not find embedded pck in EXE, found pck file, loading from: C:/Games/blitz_legacy_build/blitz_legacy.pck
+   at: GDRESettings::sort_and_validate_pck_files (modules\gdsdecomp\utility\gdre_settings.cpp:612)
+Opening file: C:/Games/blitz_legacy_build/blitz_legacy.pck
+Loaded 2280 imported files
+Detected Engine Version: 4.7.0
+Detected Bytecode Revision: 4.5.0-stable (ebc36a7)
+Verified 7850 files, no errors detected!
+Extracted 7850 files, no errors detected!
+Recreating plugin configs...
+Downloading plugin to populate cache: https://github.com/Beliaar/godot-yaml-asset/archive/f83ea26756aa7a20964a2f6904ecac511edccc57.zip
+Populating plugin version hashes for godot-yaml version: 0.9.3
+Downloading plugin to populate cache: https://github.com/Beliaar/godot-yaml-asset/archive/v0.9.2c.zip
+Populating plugin version hashes for godot-yaml version: 0.9.2
+Downloading plugin to populate cache: https://github.com/fimbul-works/godot-yaml/releases/download/v2.2.1/godot-yaml-v2.2.1.zip
+Populating plugin version hashes for yaml version: 2.2.1
+Downloading plugin to populate cache: https://github.com/fimbul-works/godot-yaml/releases/download/v2.2.0/godot-yaml-v2.2.0.zip
+Populating plugin version hashes for yaml version: 2.2.0
+Downloading plugin to populate cache: https://github.com/fimbul-works/godot-yaml/releases/download/v2.1.2/godot-yaml-v2.1.2.zip
+Populating plugin version hashes for yaml version: 2.1.2
+Found matching plugin after population: yaml, version: 2.1.2, download url: https://github.com/fimbul-works/godot-yaml/releases/download/v2.1.2/godot-yaml-v2.1.2.zip
+Loading resource strings, this may take a while!!
+Resource strings loaded!
+Saved project config.
+
+
+********************************EXPORT REPORT********************************
+
+Totals:                                 
+Decompiled scripts:                     204
+Scripts not decompiled:                 0
+Imported resources for export session:  2280
+Successfully converted:                 2280
+Lossy:                                  1673
+Rewrote metadata:                       2074
+Non-importable conversions:             1
+Not converted:                          0
+Failed conversions:                     0
+-------------
+
+------
+
+The following files were converted and saved to a non-original path, but did not have their import data rewritten.
+These files will not be re-imported when loading the project.
+res://lang.en.translation to res://.assets/lang.csv
+
+
+
+---------------------------------IMPORTANT NOTES----------------------------------
+
+
+Translation Export Incomplete:
+Could not recover 92/299 keys for res://lang.csv
+Some locales are out of sync and won't have correct messages in the csv file: ru
+Too inaccurate, saved lang.csv to res://.assets/lang.csv
+
+
+
+
+------------------------------------------------------------------------------------
+
+Use Godot editor version 4.7.0 to edit the project.
+
+*******************************************************************************
+

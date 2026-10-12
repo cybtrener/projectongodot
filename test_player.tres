@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Player" format=3]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_c2est"]
+
+[resource]
+script = ExtResource("1_c2est")
+credits_earned = 10000

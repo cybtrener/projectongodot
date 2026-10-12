@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://3n0sqe726cwi"]
+
+[ext_resource type="Shader" uid="uid://c6ikb7h3ostr6" path="res://assets/tanks/base/armor_new.gdshader" id="1_ec5l0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w4ale"]
+render_priority = 0
+shader = ExtResource("1_ec5l0")
+shader_parameter/HE = false
+shader_parameter/HEAT = false
+shader_parameter/caliber = 12.0
+shader_parameter/penetration = 72.0
+shader_parameter/nominal_armor = 60.0
+shader_parameter/normalization = 0.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_ct0m2"]
+
+[node name="Node3D" type="Node3D" unique_id=1718670733]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1719186476]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11632061, 0.12681365, 0.09908509)
+material_override = SubResource("ShaderMaterial_w4ale")
+mesh = SubResource("BoxMesh_ct0m2")
