@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://da7gxd5u3qa15"]
+
+[ext_resource type="ArrayMesh" uid="uid://f2y7njk6kar4" path="res://maps/components/base_flag.obj" id="1_1wf03"]
+[ext_resource type="Shader" uid="uid://b437dl5owwx8e" path="res://maps/components/map_object.gdshader" id="2_tua06"]
+[ext_resource type="Texture2D" uid="uid://dhiicts0ymo2h" path="res://maps/components/base.mali_Out.png" id="3_csn42"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dlljw"]
+render_priority = 0
+shader = ExtResource("2_tua06")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("3_csn42")
+shader_parameter/albedo_texture_size = Vector2i(0, 0)
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[node name="base" type="Node3D" unique_id=1466458947]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=917699764]
+transform = Transform3D(0.01, 0, 0, 0, -4.3711387e-10, 0.01, 0, -0.01, -4.3711387e-10, 0, 0, 0)
+mesh = ExtResource("1_1wf03")
+surface_material_override/0 = SubResource("ShaderMaterial_dlljw")

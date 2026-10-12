@@ -1,0 +1,41 @@
+[gd_resource type="VisualShader" format=3 uid="uid://b57lxise6fk37"]
+
+[sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_k7ecf"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_ws4oq"]
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_j14gl"]
+parameter_name = "speed"
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_k7ecf"]
+output_port_for_preview = 0
+source = 5
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_ws4oq"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_j14gl"]
+parameter_name = "Texture2DParameter"
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_k7ecf"]
+op_type = 0
+
+[resource]
+preview_params/Texture2DParameter = "Resource(\"uid://uyke88px2yv8\", \"res://maps/rudniki/objects/_resources/w.mali_Out.png\")"
+nodes/vertex/0/position = Vector2(220, 40)
+nodes/vertex/2/node = SubResource("VisualShaderNodeUVFunc_k7ecf")
+nodes/vertex/2/position = Vector2(-280, 240)
+nodes/vertex/3/node = SubResource("VisualShaderNodeInput_ws4oq")
+nodes/vertex/3/position = Vector2(-1060, 320)
+nodes/vertex/4/node = SubResource("VisualShaderNodeFloatParameter_j14gl")
+nodes/vertex/4/position = Vector2(-1060, 160)
+nodes/vertex/5/node = SubResource("VisualShaderNodeTexture_k7ecf")
+nodes/vertex/5/position = Vector2(-20, 80)
+nodes/vertex/6/node = SubResource("VisualShaderNodeFloatOp_ws4oq")
+nodes/vertex/6/position = Vector2(-820, 200)
+nodes/vertex/7/node = SubResource("VisualShaderNodeTexture2DParameter_j14gl")
+nodes/vertex/7/position = Vector2(-360, -80)
+nodes/vertex/8/node = SubResource("VisualShaderNodeVectorCompose_k7ecf")
+nodes/vertex/8/position = Vector2(-560, 260)
+nodes/vertex/connections = PackedInt32Array(4, 0, 6, 0, 3, 0, 6, 1, 7, 0, 5, 2, 5, 0, 0, 6, 8, 0, 2, 2, 6, 0, 8, 0, 6, 0, 8, 1, 2, 0, 5, 1, 2, 0, 5, 0)

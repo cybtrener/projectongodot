@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://fkuclpvfetuc"]
+
+[ext_resource type="Shader" uid="uid://b437dl5owwx8e" path="res://maps/components/map_object.gdshader" id="1_tddwd"]
+[ext_resource type="Texture2D" uid="uid://cr51oq5o22jjp" path="res://maps/rudniki/objects/_resources/bld708_shed.mali_Out.png" id="2_h5ris"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_tddwd")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("2_h5ris")
+shader_parameter/albedo_texture_size = Vector2i(0, 0)
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)

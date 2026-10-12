@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxneq5578who"]
+
+[ext_resource type="Script" uid="uid://chwdtflhiusr8" path="res://maps/components/map_object_vegetation.gd" id="1_f3kvk"]
+
+[node name="test_bush" type="Node3D" node_paths=PackedStringArray("sprites", "lods", "collider")]
+script = ExtResource("1_f3kvk")
+no_lods_on_fade = null
+sprites = NodePath("sprites")
+lods = NodePath("lods")
+collider = NodePath("collider")
+
+[node name="sprites" type="Node3D" parent="."]
+
+[node name="lods" type="Node3D" parent="."]
+
+[node name="collider" type="StaticBody3D" parent="."]
+collision_layer = 32
+collision_mask = 0
