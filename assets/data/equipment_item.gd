@@ -1,0 +1,2 @@
+extends EquipmentBase
+class_name EquipmentItem

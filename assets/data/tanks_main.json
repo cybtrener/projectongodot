@@ -1,0 +1,116 @@
+{
+	"camo_factors": [
+		0.280000001192093,
+		0.280000001192093,
+		0.430000007152557
+	],
+	"cost_credits": 1500,
+	"cost_xp": 150,
+	"crew_xp_factor": 1,
+	"display_name": "Base Tank",
+	"display_name_short": "Base Tank",
+	"engines": {
+		"cost_xp": 100,
+		"display_name": "ebatel_mk1",
+		"fireStartChance": 0.2,
+		"health": 100,
+		"level": 1,
+		"name": "Ebatel' mk1",
+		"power": 100,
+		"weight": 150
+	},
+	"farm_coeff": 1,
+	"guns": {
+		"aim_time": 2.3,
+		"burst_info": {
+			"burstDelay": 0,
+			"burstSize": 1,
+			"clipDelay": 0,
+			"clipSize": 1
+		},
+		"cost_xp": 100,
+		"deviation_r": [
+			180,
+			180
+		],
+		"deviation_up": [
+			8,
+			20
+		],
+		"disp": 0.44,
+		"disp_factors": [
+			0.100000001490116,
+			3,
+			2
+		],
+		"display_name": "ebatel_mk1",
+		"fire_mode": 0,
+		"health": 100,
+		"impulse_mul": 1,
+		"level": 1,
+		"max_ammo": 150,
+		"name": "Ebatel' mk1",
+		"reload": 4.88,
+		"rot_speed": 72,
+		"shells": [
+			{
+				"caliber": 75,
+				"dmg": 10,
+				"gravity_mul": 1,
+				"max_dist": 720,
+				"name": "76мм УБР-354А",
+				"pen": 100,
+				"speed": 750,
+				"type": 0
+			},
+			{
+				"caliber": 75,
+				"dmg": 10,
+				"gravity_mul": 1,
+				"max_dist": 720,
+				"name": "76мм УБР-354А",
+				"pen": 100,
+				"speed": 750,
+				"type": 0
+			},
+			{
+				"caliber": 75,
+				"dmg": 10,
+				"gravity_mul": 1,
+				"max_dist": 720,
+				"name": "76мм УБР-354А",
+				"pen": 100,
+				"speed": 750,
+				"type": 0
+			}
+		],
+		"weight": 150
+	},
+	"ignore_matchmaker": false,
+	"lvl": 1,
+	"name": "base_tank",
+	"nation": 0,
+	"prem": false,
+	"repair_cost": 3.55,
+	"speed_limits": [
+		72,
+		20
+	],
+	"spot_radius": 400,
+	"tank_class": 0,
+	"tracks": {
+		"cost_xp": 100,
+		"display_name": "ebatel_mk1",
+		"health": 100,
+		"level": 1,
+		"name": "Ebatel' mk1",
+		"rot_speed": 72,
+		"weight": 150
+	},
+	"tree_branch": 0,
+	"tree_tank": false,
+	"turret_health": 94,
+	"turret_rot_speed": 38,
+	"unlock_tanks": [],
+	"weight": 2500
+}

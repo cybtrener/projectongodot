@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cr67uhci02md6"]
+
+[ext_resource type="Texture2D" uid="uid://vpg2t2whmoin" path="res://assets/dev/grid.png" id="1_1n6jk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x5lal"]
+albedo_texture = ExtResource("1_1n6jk")
+uv1_offset = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_3x7yi"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_va1qt"]
+
+[node name="cube" type="MeshInstance3D"]
+material_override = SubResource("StandardMaterial3D_x5lal")
+mesh = SubResource("BoxMesh_3x7yi")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_va1qt")
